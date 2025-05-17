@@ -1,7 +1,7 @@
 @extends('backend.v_layouts.app')
 @section('content')
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid mb-4">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
