@@ -40,7 +40,7 @@
                         <tr class="align-middle border-bottom border-secondary">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('storage/image/produk/' . $item['produk']->photo) }}" alt="produk"
+                                    <img src="{{ asset('storage/image/produk/' . $item['produk']->foto) }}" alt="produk"
                                         class="img-fluid rounded mr-3" style="width: 60px; height: 60px; object-fit: cover;">
                                     <div>
                                         <h6 class="mb-1 text-white">{{ $item['produk']->nama }}</h6>
@@ -107,47 +107,6 @@
                 <button type="button" id="pay-button" class="btn btn-primary mt-2">Bayar Sekarang</button>
             </div>
         </form>
-        <!-- Tombol untuk membuka modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
-            Buka Modal Pembayaran
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="paymentModalLabel">Pembayaran Anda</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="text-center">
-                            <h4>Total Pembayaran</h4>
-                            <h3><strong>Rp 1.000.000</strong></h3>
-
-                            <p>Metode Pembayaran:</p>
-                            <select class="custom-select mb-3" id="paymentMethod">
-                                <option value="COD">Cash On Delivery (COD)</option>
-                                <option value="card">Kartu Kredit/Debit</option>
-                                <option value="gopay">GoPay</option>
-                                <option value="ovo">OVO</option>
-                            </select>
-
-                            <div id="paymentInfo" class="mt-4">
-                                <p><strong>Pastikan informasi pembayaran sudah benar sebelum melanjutkan.</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-warning btn-lg">Lanjutkan Pembayaran</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Bootstrap CSS -->
 
         <!-- Bootstrap JS and dependencies -->

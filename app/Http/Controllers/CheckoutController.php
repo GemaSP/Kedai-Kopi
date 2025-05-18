@@ -128,32 +128,38 @@ class CheckoutController extends Controller
                 Configuration::setXenditKey('xnd_development_yyMAxQOjg2cyDcMhyLTq6OG1S6hAzoaEpAFDGZRFA42Krh0euNg91MoWVIxQzC');
                 $apiInstance = new InvoiceApi();
 
+                $routeUrl = route('transaksi.finish', ['id_pemesanan' => $idPemesanan]);
+
+                $items = array_map(function ($item) {
+                    return [
+                        'name' => $item['produk']->nama,
+                        'price' => $item['produk']->harga,
+                        'quantity' => $item['quantity'],
+                        'total' => $item['total'],
+                    ];
+                }, $checkoutItems);
+
+                $fees = [[
+                    'type' => "Ongkos Kirim",
+                    'value' => $ongkir,
+                ]];
+
+                $customer = [
+                    'given_names' => 'Ahmad',
+                    'surname' => 'Gunawan',
+                    'email' => 'ahmad_gunawan@example.com',
+                    'mobile_number' => '+6287774441111',
+                ];
+
                 $create_invoice_request = new CreateInvoiceRequest([
                     'external_id' => $idPemesanan,
                     'payer_email' => $user->email,
-                    'customer' => [
-                        'given_names' => 'Ahmad',
-                        'surname' => 'Gunawan',
-                        'email' => 'ahmad_gunawan@example.com',
-                        'mobile_number' => '+6287774441111',
-                    ],
+                    'customer' => $customer,
                     'amount' => $totalBayar,
                     'description' => 'Pembayaran untuk pesanan #' . $idPemesanan,
-                    'success_redirect_url' => route('transaksi.finish', ['id_pemesanan' => $idPemesanan]),
-                    'items' => array_merge(
-                        array_map(function ($item) {
-                            return [
-                                'name' => $item['produk']->nama,
-                                'price' => $item['produk']->harga,
-                                'quantity' => $item['quantity'],
-                                'total' => $item['total'],
-                            ];
-                        }, $checkoutItems),
-                    ),
-                    'fees' => [[
-                        'type' => "Ongkos Kirim",
-                        'value' => $ongkir,
-                    ]]
+                    'success_redirect_url' => $routeUrl,
+                    'items' => $items,
+                    'fees' => $fees,
                 ]);
 
                 $result = $apiInstance->createInvoice($create_invoice_request);

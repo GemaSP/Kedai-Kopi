@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62e9fd292c03830c6d81bd113221a884",
+    "content-hash": "d4a1911d1d9529a71be63cd31b345ab2",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -6212,16 +6212,16 @@
         },
         {
             "name": "xendit/xendit-php",
-            "version": "6.3.0",
+            "version": "6.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xendit/xendit-php.git",
-                "reference": "af0755029f15bd24ad3752342fea715562071317"
+                "reference": "1b525c90f88578d05593f7a714363544cd752620"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xendit/xendit-php/zipball/af0755029f15bd24ad3752342fea715562071317",
-                "reference": "af0755029f15bd24ad3752342fea715562071317",
+                "url": "https://api.github.com/repos/xendit/xendit-php/zipball/1b525c90f88578d05593f7a714363544cd752620",
+                "reference": "1b525c90f88578d05593f7a714363544cd752620",
                 "shasum": ""
             },
             "require": {
@@ -6266,9 +6266,9 @@
             ],
             "support": {
                 "issues": "https://github.com/xendit/xendit-php/issues",
-                "source": "https://github.com/xendit/xendit-php/tree/6.3.0"
+                "source": "https://github.com/xendit/xendit-php/tree/6.4.0"
             },
-            "time": "2025-03-13T05:39:26+00:00"
+            "time": "2025-05-16T04:31:28+00:00"
         }
     ],
     "packages-dev": [

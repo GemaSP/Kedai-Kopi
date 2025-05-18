@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanca Caffee</title>
+    <title>Kedai Kopi</title>
     <!-- Favicon -->
     <link href="frontend/img/favicon.ico" rel="icon">
 
@@ -32,7 +32,7 @@
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
             <a href="" class="navbar-brand px-lg-4 m-0">
-                <h1 class="m-0 display-4 text-uppercase text-white">Kanca</h1>
+                <h1 class="m-0 display-4 text-uppercase text-white">Kopi</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -109,13 +109,13 @@
         <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Get In Touch</h4>
-                <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Jalan 123, Bogor, Jabar</p>
                 <p><i class="fa fa-phone-alt mr-2"></i>+62 812 9770 5514</p>
-                <p><i class="fa fa-envelope mr-2"></i>kanca@gmail.com</p>
+                <p><i class="fa fa-envelope mr-2"></i>gesap@gmail.com</p>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Follow Us</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, rerum.</p>
+                <p>Mampir ke sosmed, siapa tau ada promo ngopi!</p>
                 <div class="d-flex justify-content-start">
                     <a href="#" class="btn btn-lg btn-outline-light btn-lg-square mr-2"><i
                             class="fab fa-twitter"></i></a>
@@ -136,7 +136,7 @@
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Newsletter</h4>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, temporibus!</p>
+                <p>Dapetin update kopi, promo, dan cerita seru langsung ke inbox kamu.</p>
                 <div class="w-100">
                     <div class="input-group">
                         <input type="text" name="" id="" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
@@ -148,8 +148,8 @@
             </div>
         </div>
         <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1)!important;">
-            <p class="mb-2 text-white">Copyright &copy; <a href="#" class="font-weight-bold">KOFFEE</a>. All Rights Reserved.</p>
-            <p class="m-0 text-white">Designed by<a href="#" class="font-weight-bold">Diligent Developer</a></p>
+            <p class="mb-2 text-white">Copyright &copy; <a href="#" class="font-weight-bold">KOPI</a>. All Rights Reserved.</p>
+            <p class="m-0 text-white">Designed by<a href="#" class="font-weight-bold"> Gesap</a></p>
         </div>
     </div>
     <!-- Footer End -->

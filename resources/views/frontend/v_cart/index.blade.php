@@ -19,6 +19,7 @@
         <!-- Items -->
         <form method="post" action="{{ route('frontend.keranjang.checkout') }}">
             @csrf
+            @if ($keranjang)
             @forelse($keranjang->item_keranjang as $item)
             @php
             $produk = $item->produk;
@@ -63,6 +64,9 @@
             @empty
             <p class="text-white">Keranjang kamu kosong.</p>
             @endforelse
+            @else
+            <p class="text-white">Keranjang kamu kosong.</p>
+            @endif
 
             <!-- Total & Checkout -->
             <div class="d-flex justify-content-end mt-4">

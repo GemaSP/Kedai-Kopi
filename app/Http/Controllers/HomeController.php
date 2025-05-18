@@ -16,14 +16,16 @@ class HomeController extends Controller
         $menu = Menu::orderBy('id_menu', 'asc')->get();
         $produk = Produk::with('menu')->where('status', 1)->get();
 
-        $keranjang = null;
-        $keranjangCount = 0;
-
         // Misal ini di controller frontend (contoh: HomeController)
         if (Auth::check()) {
             $idUser = Auth::user()->id_user;
             $keranjang = Keranjang::where('id_user', $idUser)->first();
-            $keranjangCount = ItemKeranjang::where('id_keranjang', $keranjang->id_keranjang)->count();
+
+            if ($keranjang) {
+                $keranjangCount = ItemKeranjang::where('id_keranjang', $keranjang->id_keranjang)->count();
+            } else {
+                $keranjangCount = 0; // Atau sesuaikan sesuai logika kamu
+            }
         }
 
         return view('frontend.v_home.index', [

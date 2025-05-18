@@ -9,7 +9,7 @@
                 <img src="frontend/img/carousel-1.jpg" alt="img" class="w-100">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <h2 class="text-primary font-weight-medium m-0">Kami Hadir dengan Kopi Terbaik</h2>
-                    <h1 class="display-1 text-white m-0">Kanca Kopi</h1>
+                    <h1 class="display-1 text-white m-0">Kedai Kopi</h1>
                     <h2 class="text-white m-0">Nikmati Setiap Cangkirnya</h2>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 <img src="frontend/img/carousel-2.jpg" alt="img" class="w-100">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <h2 class="text-primary font-weight-medium m-0">Kami Hadir dengan Kopi Terbaik</h2>
-                    <h1 class="display-1 text-white m-0">Kanca Kopi</h1>
+                    <h1 class="display-1 text-white m-0">Kedai Kopi</h1>
                     <h2 class="text-white m-0">Nikmati Setiap Cangkirnya</h2>
                 </div>
             </div>
@@ -215,15 +215,14 @@
                     <div class="p-5">
                         <div class="mb-4">
                             <h1 class="display-3 text-primary">30% OFF</h1>
-                            <h1 class="text-white">For Online Reservation</h1>
+                            <h1 class="text-white">Untuk Reservasi Meja Online</h1>
                         </div>
-                        <p class="text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias ad
-                            tempore atque iure cumque ullam, saepe fugiat illum soluta voluptas eum eligendi
-                            provident facere, error, voluptatibus ex amet est voluptatem?</p>
+                        <p class="text-white">Nikmati pengalaman ngopi yang lebih nyaman dengan memesan meja secara online di kedai kopi kami!
+                            Dapatkan diskon spesial 30% hanya dengan reservasi melalui website.</p>
                         <ul class="list-inline text-white m-0">
-                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Lorem, ipsum dolor.</li>
-                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Lorem, ipsum dolor.</li>
-                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Lorem, ipsum dolor.</li>
+                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Hemat tanpa antre panjang</li>
+                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Pilih meja favoritmu.</li>
+                            <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Berlaku setiap hari*</li>
                         </ul>
                     </div>
                 </div>
@@ -361,7 +360,7 @@
             <div class="col-sm-4 text-center mb-3">
                 <i class="fa fa-2x fa-envelope mb-3 text-primary"></i>
                 <h4 class="font-weight-bold">Email</h4>
-                <p>kanca@gmail.com</p>
+                <p>gesap@gmail.com</p>
             </div>
         </div>
         <div class="row">

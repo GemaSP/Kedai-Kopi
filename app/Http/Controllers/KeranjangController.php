@@ -19,8 +19,17 @@ class KeranjangController extends Controller
     {
         $userId = Auth::user()->id_user;
         $user = User::where('id_user', $userId)->first();
-        $keranjang = $user->keranjang()->with(['item_keranjang.produk'])->first();
-        $keranjangCount = ItemKeranjang::where('id_keranjang', $keranjang->id_keranjang)->count();
+        
+        if (Auth::check()) {
+            $idUser = Auth::user()->id_user;
+            $keranjang = Keranjang::where('id_user', $idUser)->first();
+
+            if ($keranjang) {
+                $keranjangCount = ItemKeranjang::where('id_keranjang', $keranjang->id_keranjang)->count();
+            } else {
+                $keranjangCount = 0; // Atau sesuaikan sesuai logika kamu
+            }
+        }
 
 
         return view('frontend.v_cart.index', [
