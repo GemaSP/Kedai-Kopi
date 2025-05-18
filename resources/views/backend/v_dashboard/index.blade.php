@@ -137,26 +137,29 @@
                     <tr>
                         <th>ID</th>
                         <th>Nama Pelanggan</th>
-                        <th>Menu</th>
-                        <th>Total</th>
+                        <th>Tanggal</th>
+                        <th>Metode Bayar</th>
+                        <th>Total Harga</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>ORD001</td>
-                        <td>Ahmad</td>
-                        <td>Es Kopi Susu</td>
-                        <td>Rp 25.000</td>
+                        <td>PSN08052025010</td>
+                        <td>Agus Susanto</td>
+                        <td>08 May 2025, 15:16</td>
+                        <td>COD</td>
+                        <td>Rp 138.000</td>
                         <td><span class="badge badge-danger">Belum Diproses</span></td>
                         <td><button class="btn btn-sm btn-success">Proses</button></td>
                     </tr>
                     <tr>
-                        <td>ORD002</td>
-                        <td>Siti</td>
-                        <td>Americano</td>
-                        <td>Rp 20.000</td>
+                    <td>PSN08052025011</td>
+                        <td>Yuliana Sari</td>
+                        <td>08 May 2025, 15:18</td>
+                        <td>Cashless</td>
+                        <td>Rp 98.000</td>
                         <td><span class="badge badge-danger">Belum Diproses</span></td>
                         <td><button class="btn btn-sm btn-success">Proses</button></td>
                     </tr>

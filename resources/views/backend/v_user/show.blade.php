@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container-fluid mb-4">
-    <h1 class="h3 mb-4 text-gray-800">Detail Pengguna</h1>
+    <h1 class="h3 mb-4 text-gray-800">Detail User</h1>
 
     <div class="card shadow">
         <div class="card-body">
             <div class="row">
                 <!-- Foto Profil -->
                 <div class="col-md-4 text-center">
-                    <img src="{{ asset('storage/image/foto-profil/' . ($row->user->foto ?? 'default.jpg')) }}"
+                    <img src="{{ asset('storage/image/foto-profil/' . ($user->foto ?? 'default.jpg')) }}"
                         alt="Foto Profil"
                         class="img-thumbnail mb-3"
                         width="250">
