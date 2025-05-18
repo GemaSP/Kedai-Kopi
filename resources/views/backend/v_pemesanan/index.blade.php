@@ -55,7 +55,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('backend.pemesanan.show', $pesanan->id_pemesanan) }}" class="btn btn-info btn-sm">Detail</a>
-                                <!-- Tambahkan tombol ubah status atau lainnya di sini jika perlu -->
+                                
                             </td>
                         </tr>
                         @endforeach

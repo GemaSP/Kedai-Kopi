@@ -13,27 +13,27 @@
 
     <!-- Modal Tambah -->
     <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="{{ route('backend.menu.store') }}" method="POST">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalTambahLabel">Tambah Menu</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTambahLabel">Tambah Menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('backend.menu.store') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label for="nama_menu">Nama Menu</label>
                             <input type="text" class="form-control" id="nama_menu" name="nama_menu" required>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
             </form>
         </div>
     </div>
@@ -92,29 +92,30 @@
 <!-- /.container-fluid -->
 <!-- Modal Edit -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <form method="POST" id="editForm">
-            @csrf
-            @method('PUT')
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Menu</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Menu</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="editForm">
+                    @csrf
+                    @method('PUT')
                     <input type="hidden" id="editId" name="id_menu">
                     <div class="form-group">
                         <label for="editNama">Nama Menu</label>
                         <input type="text" class="form-control" id="editNama" name="nama_menu" required>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" type="submit">Update</button>
-                </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </div>
         </form>
     </div>
 </div>

@@ -127,6 +127,9 @@
         </div>
     </div>
     <!-- Tabel Pesanan Belum Diproses -->
+    @if (Auth::user()->role == 0)
+
+    @else
     <div class="card mt-4">
         <div class="card-header bg-danger text-white">
             <i class="fas fa-bell"></i> Pesanan Belum Diproses
@@ -155,7 +158,7 @@
                         <td><button class="btn btn-sm btn-success">Proses</button></td>
                     </tr>
                     <tr>
-                    <td>PSN08052025011</td>
+                        <td>PSN08052025011</td>
                         <td>Yuliana Sari</td>
                         <td>08 May 2025, 15:18</td>
                         <td>Cashless</td>
@@ -167,6 +170,7 @@
             </table>
         </div>
     </div>
+    @endif
 </div>
 <!-- /.container-fluid -->
 

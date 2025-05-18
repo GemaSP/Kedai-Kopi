@@ -56,8 +56,9 @@
                                     <button class="btn btn-danger btn-sm">Batalkan</button>
                                 </form>
                                 @else
-                                <span class="text-muted">-</span>
+                                <span class="text-muted"></span>
                                 @endif
+                                <a href="{{ route('backend.pemesanan.show', $trx->id_pemesanan) }}" class="btn btn-info btn-sm">Detail</a>
                             </td>
                         </tr>
                         @endforeach

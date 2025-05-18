@@ -9,7 +9,7 @@
             <div class="row">
                 <!-- Foto Profil -->
                 <div class="col-md-4 text-center">
-                    <img src="{{ asset('storage/image/foto-profil/' . ($row->user->foto ?? 'default.jpg')) }}"
+                    <img src="{{ asset('storage/image/foto-profil/' . ($pelanggan->user->foto ?? 'default.jpg')) }}"
                         alt="Foto Profil"
                         class="img-thumbnail mb-3"
                         width="250">
