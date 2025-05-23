@@ -49,7 +49,7 @@
                     <div class="d-flex gap-2">
                         {{-- Tombol Ubah Alamat --}}
                         {{-- Tombol Detail --}}
-                        <a href="{{ route('frontend.pesanan.index', $pesanan->id_pemesanan) }}" class="btn btn-light btn-sm">
+                        <a href="{{ route('frontend.pesanan.detail', $pesanan->id_pemesanan) }}" class="btn btn-light btn-sm">
                             Detail
                         </a>
 

@@ -18,12 +18,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="frontend/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="frontend/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="{{ asset('frontend/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="frontend/css/style.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="frontend/css/style.css">
+    <link href="{{ asset('frontend/css/style.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 </head>
 
 <body>
@@ -69,12 +69,12 @@
                 <div class="dropdown px-3">
                     <a href="#" class="d-flex align-items-center text-white dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <!-- Avatar -->
-                        <img src="{{ asset('frontend/img/avatar_default.png') }}" class="rounded-circle" width="30" height="30" alt="Avatar">
+                        <img src="{{ asset('storage/image/foto-profil/' . ($user->foto ?? 'default.jpg')) }}" class="rounded-circle" width="30" height="30" alt="Avatar">
                         <!-- Nama User -->
                         <span class="ml-2 d-none d-md-inline">{{ Auth::user()->nama }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="{{ route('frontend.pesanan.index') }}">Profil</a>
+                        <a class="dropdown-item" href="{{ route('frontend.profilSaya') }}">Profil</a>
                         <a class="dropdown-item" href="{{ route('frontend.pesanan.index') }}">Pesanan Saya</a>
                         <a class="dropdown-item" href="{{ route('frontend.logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

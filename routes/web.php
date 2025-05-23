@@ -34,7 +34,10 @@ Route::get('pesananSaya', [PesananController::class, 'index'])->name('frontend.p
 Route::post('pesananSaya/{id}/konfirmasi', [PesananController::class, 'konfirmasi'])->name('frontend.pesanan.konfirmasi');
 Route::post('pesananSaya/{id}/batalkan', [PesananController::class, 'batalkan'])->name('frontend.pesanan.batal');
 Route::post('checkout/cod', [CheckoutController::class, 'codCheckout'])->name('frontend.checkout.cod');
-Route::get('/pesananSaya/{id}/detail', [PesananController::class, 'show'])->name('frontend.pesanan.detail');
+Route::get('pesananSaya/detail/{id}', [PesananController::class, 'show'])->name('frontend.pesanan.detail');
+Route::get('profilSaya', [ProfilController::class, 'profilSaya'])->name('frontend.profilSaya');
+Route::post('/profilSaya/update', [ProfilController::class, 'updateProfil'])->name('frontend.profil.update');
+Route::post('/profilSaya/ganti-password', [ProfilController::class, 'gantiPassword'])->name('frontend.profil.gantiPassword');
 
 
 // Route Back End

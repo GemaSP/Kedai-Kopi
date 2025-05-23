@@ -70,15 +70,15 @@ class PesananController extends Controller
     }
 
     public function show($id)
-{
-    $user = Auth::user();
-    $pelanggan = Pelanggan::where('id_user', $user->id_user)->first();
-    $pesanan = Pemesanan::with(['item_pemesanan.produk', 'transaksi'])
-        ->where('id_pemesanan', $id)
-        ->where('id_pelanggan', $pelanggan->id_pelanggan)
-        ->firstOrFail();
-
-    return view('frontend.pesanan.detail', compact('pesanan'));
-}
-
+    {
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where('id_user', $user->id_user)->first();
+        $pesanan = Pemesanan::with(['item_pemesanan.produk', 'transaksi'])
+            ->where('id_pemesanan', $id)
+            ->where('id_user', $user->id_user)
+            ->firstOrFail();
+        $keranjang = Keranjang::where('id_user', Auth::user()->id_user)->first();
+        $keranjangCount = ItemKeranjang::where('id_keranjang', $keranjang->id_keranjang)->count();
+        return view('frontend.v_pesanan.show', compact('pesanan', 'keranjangCount'));
+    }
 }

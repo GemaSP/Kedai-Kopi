@@ -15,6 +15,9 @@ class HomeController extends Controller
     {
         $menu = Menu::orderBy('id_menu', 'asc')->get();
         $produk = Produk::with('menu')->where('status', 1)->get();
+        // Set default keranjangCount dulu
+        $keranjangCount = 0;
+
 
         // Misal ini di controller frontend (contoh: HomeController)
         if (Auth::check()) {
