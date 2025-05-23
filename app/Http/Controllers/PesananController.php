@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ItemKeranjang;
 use App\Models\Keranjang;
+use App\Models\Pelanggan;
 use App\Models\Pemesanan;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -67,4 +68,17 @@ class PesananController extends Controller
 
         return redirect()->route('backend.pesanan.index')->with('error', 'Pesanan tidak bisa dibatalkan.');
     }
+
+    public function show($id)
+{
+    $user = Auth::user();
+    $pelanggan = Pelanggan::where('id_user', $user->id_user)->first();
+    $pesanan = Pemesanan::with(['item_pemesanan.produk', 'transaksi'])
+        ->where('id_pemesanan', $id)
+        ->where('id_pelanggan', $pelanggan->id_pelanggan)
+        ->firstOrFail();
+
+    return view('frontend.pesanan.detail', compact('pesanan'));
+}
+
 }

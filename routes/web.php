@@ -34,6 +34,7 @@ Route::get('pesananSaya', [PesananController::class, 'index'])->name('frontend.p
 Route::post('pesananSaya/{id}/konfirmasi', [PesananController::class, 'konfirmasi'])->name('frontend.pesanan.konfirmasi');
 Route::post('pesananSaya/{id}/batalkan', [PesananController::class, 'batalkan'])->name('frontend.pesanan.batal');
 Route::post('checkout/cod', [CheckoutController::class, 'codCheckout'])->name('frontend.checkout.cod');
+Route::get('/pesananSaya/{id}/detail', [PesananController::class, 'show'])->name('frontend.pesanan.detail');
 
 
 // Route Back End
