@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\ClearCheckoutSession;
+use App\Http\Middleware\PelangganAuthenticate;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -15,7 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(ClearCheckoutSession::class);
         $middleware->alias([
-            'guest' => RedirectIfAuthenticated::class
+            'guest' => RedirectIfAuthenticated::class,
+            'auth' => Authenticate::class,
+            'auth-pelanggan' => PelangganAuthenticate::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
