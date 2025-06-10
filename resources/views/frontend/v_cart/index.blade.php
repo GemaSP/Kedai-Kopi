@@ -100,6 +100,7 @@
                 const price = parseInt(cb.dataset.price);
                 const qty = parseInt(qtyInput.value);
 
+                // Update total per item
                 const itemTotal = parent.querySelector('.item-total');
                 const totalPerItem = price * qty;
                 itemTotal.textContent = `Rp ${totalPerItem.toLocaleString('id-ID')}`;
@@ -110,6 +111,15 @@
             });
             totalDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
         }
+
+        checkAll.addEventListener('change', function() {
+            itemCheckboxes.forEach(cb => cb.checked = checkAll.checked);
+            updateTotal();
+        });
+
+        itemCheckboxes.forEach(cb => {
+            cb.addEventListener('change', updateTotal);
+        });
 
         // AJAX update quantity
         document.querySelectorAll('input[type="number"]').forEach(input => {
@@ -145,7 +155,7 @@
             });
         });
 
-        updateTotal();
+        updateTotal(); // Inisialisasi saat pertama kali
     });
 
     // Tombol hapus item
