@@ -21,13 +21,13 @@
                     <form class="user" method="post" action="{{ route('backend.storeLogin') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control form-control-user"
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control form-control-user"
                                 id="email" aria-describedby="emailHelp"
-                                placeholder="Masukkan Alamat Email...">
+                                placeholder="Masukkan Alamat Email..." required oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="this.setCustomValidity('')">
                         </div>
                         <div class="form-group">
                             <input type="password" name="password" class="form-control form-control-user"
-                                id="password" placeholder="Password">
+                                id="password" placeholder="Password" required oninvalid="this.setCustomValidity('Password tidak boleh kosong')" oninput="this.setCustomValidity('')">
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox small">

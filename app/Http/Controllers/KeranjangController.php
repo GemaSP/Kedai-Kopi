@@ -19,7 +19,7 @@ class KeranjangController extends Controller
     {
         $userId = Auth::user()->id_user;
         $user = User::where('id_user', $userId)->first();
-        
+
         if (Auth::check()) {
             $idUser = Auth::user()->id_user;
             $keranjang = Keranjang::where('id_user', $idUser)->first();
@@ -165,5 +165,14 @@ class KeranjangController extends Controller
 
         // Redirect ke halaman checkout
         return redirect()->route('frontend.checkout.index');
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        $item = ItemKeranjang::findOrFail($request->id);
+        $item->quantity = $request->quantity;
+        $item->save();
+
+        return response()->json(['success' => true]);
     }
 }

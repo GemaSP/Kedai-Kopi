@@ -57,11 +57,15 @@
                                 @endif
                             </td>
                             <td>
-                                <form action="{{ route('backend.produk.destroy', $row->id_produk) }}" method="post">
+                                <form id="delete-form-{{ $row->id_produk }}" action="{{ route('backend.produk.destroy', $row->id_produk) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <a href="{{ route('backend.produk.edit', $row->id_produk) }}" class="btn btn-primary">Edit</a>
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button type="button" class="btn btn-danger deleteBtn"
+                                        data-id="{{ $row->id_produk }}"
+                                        data-nama="{{ $row->nama }}">
+                                        Hapus
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -76,5 +80,33 @@
 
 </div>
 <!-- End of Main Content -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.deleteBtn');
 
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const id = button.getAttribute('data-id');
+                const nama = button.getAttribute('data-nama');
+                const form = document.getElementById('delete-form-' + id);
+
+                Swal.fire({
+                    title: 'Yakin?',
+                    html: 'Anda akan menghapus produk <b>' + nama + '</b>!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
 @endsection

@@ -40,6 +40,7 @@ Route::middleware(['auth-pelanggan'])->group(function () {
     Route::get('profilSaya', [ProfilController::class, 'profilSaya'])->name('frontend.profilSaya');
     Route::post('/profilSaya/update', [ProfilController::class, 'updateProfil'])->name('frontend.profil.update');
     Route::post('/profilSaya/ganti-password', [ProfilController::class, 'gantiPassword'])->name('frontend.profil.gantiPassword');
+    Route::post('/keranjang/update-quantity', [KeranjangController::class, 'updateQuantity'])->name('frontend.keranjang.updateQuantity');
 });
 
 

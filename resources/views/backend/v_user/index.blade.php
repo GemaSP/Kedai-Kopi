@@ -51,11 +51,11 @@
                             </td>
                             <td>
                                 @if ($row->role == 1)
-                                <span class="badge badge-danger">Admin</span> 
+                                <span class="badge badge-danger">Admin</span>
                                 @elseif ($row->role == 2)
-                                <span class="badge badge-success">Pelanggan</span> 
+                                <span class="badge badge-success">Pelanggan</span>
                                 @else
-                                <span class="badge badge-info">Pemilik</span> 
+                                <span class="badge badge-info">Pemilik</span>
                                 @endif
                             </td>
                             <td><img src="{{ asset('storage/image/foto-profil/' . ($row->foto ?? 'default.jpg')) }}" alt="" width="100" height="100"></td>
@@ -67,18 +67,18 @@
 
                                 <!-- Tombol Status Aktif / Nonaktif -->
                                 @if ($row->status == 1)
-                                <form action="{{ route('backend.user.toggleStatus', $row->id_user) }}" method="POST" class="d-inline">
+                                <form id="toggle-form-{{ $row->id_user }}" action="{{ route('backend.user.toggleStatus', $row->id_user) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Nonaktifkan user ini?')">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="konfirmasiToggle('{{ $row->id_user }}', '{{ $row->nama }}' , 'nonaktifkan')">
                                         Nonaktifkan
                                     </button>
                                 </form>
                                 @else
-                                <form action="{{ route('backend.user.toggleStatus', $row->id_user) }}" method="POST" class="d-inline">
+                                <form id="toggle-form-{{ $row->id_user }}" action="{{ route('backend.user.toggleStatus', $row->id_user) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Aktifkan user ini?')">
+                                    <button type="button" class="btn btn-success btn-sm" onclick="konfirmasiToggle('{{ $row->id_user }}', '{{ $row->nama }}' , 'aktifkan')">
                                         Aktifkan
                                     </button>
                                 </form>
@@ -96,5 +96,24 @@
 
 </div>
 <!-- End of Main Content -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function konfirmasiToggle(id, nama, aksi) {
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            html: 'Anda akan ' + aksi + ' user <b>' + nama + '</b> ini!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: aksi === 'aktifkan' ? '#28a745' : '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, ' + aksi + '!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('toggle-form-' + id).submit();
+            }
+        });
+    }
+</script>
 
 @endsection

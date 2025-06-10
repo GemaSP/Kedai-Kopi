@@ -77,10 +77,22 @@ class TransaksiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // Ambil data transaksi beserta relasi: pemesanan, user, item pemesanan, dan produk
+        $transaksi = Transaksi::with([
+            'pemesanan.user',
+            'pemesanan.item_pemesanan.produk'
+        ])->findOrFail($id);
+
+        // Tampilkan ke view
+        return view('backend.v_transaksi.show', [
+            'transaksi' => $transaksi,
+            'judul' => 'Transaksi',
+            'user' => Auth::user(),
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -130,7 +142,7 @@ class TransaksiController extends Controller
                     // Filter transaksi berdasarkan invoice_id
                     $transaction = collect($data['data'])->firstWhere('reference_id', $invoice_id);
                     // Debugging: tampilkan transaksi yang ditemukan
-                 
+
                     // Pastikan ada transaksi yang ditemukan
                     if ($transaction) {
                         // Mendapatkan status pembayaran dari Xendit

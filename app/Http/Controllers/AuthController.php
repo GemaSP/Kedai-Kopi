@@ -6,6 +6,7 @@ use App\Models\Pelanggan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -23,20 +24,30 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($validatedData)) {
-            $request->session()->regenerate();
+        $user = User::where('email', $validatedData['email'])->first();
 
-            $user = Auth::user();
-
-            if (!in_array($user->role, [0, 1])) {
-                Auth::logout();
-                return back()->with('gagal', 'Anda tidak memiliki hak untuk mengakses halaman ini.');
-            }
-
-            return redirect()->intended('backend/dashboard');
-        } else {
-            return back()->with('gagal', 'Login gagal. Periksa kembali email dan password Anda.');
+        if (!$user) {
+            return back()
+                ->with('gagal', 'Email tidak terdaftar.')
+                ->withInput();
         }
+
+        if (!Hash::check($validatedData['password'], $user->password)) {
+            return back()
+                ->with('gagal', 'Password salah.')
+                ->withInput();
+        }
+
+        if (!in_array($user->role, [0, 1])) {
+            return back()
+                ->with('gagal', 'Anda tidak memiliki hak untuk mengakses halaman ini.');
+        }
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return redirect()->intended('backend/dashboard')
+            ->with('Sukses', 'Berhasil login.');
     }
 
 
@@ -101,17 +112,29 @@ class AuthController extends Controller
 
     public function storeLoginCustomer(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($validatedData)) {
-            $request->session()->regenerate();
-            return redirect()->route('frontend.home');
-        } else {
-            return back()->with('Gagal', 'Login Gagal');
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()
+                ->withInput() // agar email tetap terisi
+                ->with('Gagal', 'Email tidak terdaftar');
         }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return back()
+                ->withInput()
+                ->with('Gagal', 'Password salah');
+        }
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return redirect()->route('frontend.home');
     }
 
     public function registerCustomer()
@@ -124,7 +147,7 @@ class AuthController extends Controller
         $validatedData = $request->validate(
             [
                 'nama' => 'required',
-                'email' => 'required|email|unique:user,email',
+                'email' => 'required|email',
                 'password' => 'required',
                 'telp' => 'required|numeric',
                 'alamat' => 'required'
@@ -133,6 +156,11 @@ class AuthController extends Controller
                 'email.required' => 'Email tidak boleh kosong',
             ]
         );
+
+        // Cek apakah email sudah digunakan
+        if (User::where('email', $request->email)->exists()) {
+            return back()->withInput()->with('Gagal', 'Email sudah terdaftar');
+        }
 
         // Generate ID User (USR000)
         $lastUser = User::latest('id_user')->first();

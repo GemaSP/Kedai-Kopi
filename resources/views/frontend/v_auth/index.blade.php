@@ -13,11 +13,11 @@
                 @csrf
                 <div class="form-group">
                     <label class="text-white">Email</label>
-                    <input type="email" name="email" id="email" class="form-control bg-transparent text-white border-light" placeholder="Masukkan email">
+                    <input type="email" name="email" id="email" class="form-control bg-transparent text-white border-light" placeholder="Masukkan email" required oninvalid="this.setCustomValidity('Email tidak boleh kosong')" oninput="setCustomValidity('')"> 
                 </div>
                 <div class="form-group">
                     <label class="text-white">Password</label>
-                    <input type="password" name="password" id="password" class="form-control bg-transparent text-white border-light" placeholder="Masukkan password">
+                    <input type="password" name="password" id="password" class="form-control bg-transparent text-white border-light" placeholder="Masukkan password" required oninvalid="this.setCustomValidity('Password tidak boleh kosong')" oninput="setCustomValidity('')">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block mt-4">Masuk</button>
                 <p class="text-white text-center mt-3">Belum punya akun? <a href="{{ route('frontend.register') }}" class="text-warning">Daftar di sini</a></p>

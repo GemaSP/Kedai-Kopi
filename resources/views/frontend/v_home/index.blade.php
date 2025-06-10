@@ -409,6 +409,7 @@
     </div>
 </div>
 <!-- Contact End -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const buttons = document.querySelectorAll('.btn-group .btn');

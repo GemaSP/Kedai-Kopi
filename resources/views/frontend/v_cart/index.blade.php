@@ -16,7 +16,7 @@
             <div class="pr-3" style="width: 15%;">Aksi</div>
         </div>
 
-        <!-- Items -->
+        <!-- Form utama -->
         <form method="post" action="{{ route('frontend.keranjang.checkout') }}">
             @csrf
             @if ($keranjang)
@@ -49,16 +49,17 @@
                     <input type="number" name="items[{{ $produk->id_produk }}][quantity]" class="form-control text-center bg-transparent text-white border-light" value="{{ $qty }}" min="1" style="width: 80px;">
                 </div>
 
-                <div class="pr-3 mb-2 mb-md-0" style="width: 15%;">
+                <div class="pr-3 mb-2 mb-md-0 item-total" style="width: 15%;" data-price="{{ $harga }}">
                     Rp {{ number_format($total, 0, ',', '.') }}
                 </div>
 
+
                 <div class="pr-3" style="width: 15%;">
-                    <!-- <form method="POST" action="{{ route('frontend.keranjang.destroy', $item->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                    </form> -->
+                    <!-- Tombol hapus pakai JS -->
+                    <button type="button" class="btn btn-sm btn-danger btn-delete-item" data-id="{{ $item->id }}">
+                        <i class="fa fa-trash"></i>
+                    </button>
+
                 </div>
             </div>
             @empty
@@ -71,15 +72,20 @@
             <!-- Total & Checkout -->
             <div class="d-flex justify-content-end mt-4">
                 <div class="text-right text-white">
-                    <h5>Total: <span class="text-warning" id="totalHarga">Rp 0</span></h5>
+                    <h5 class="text-white">Total: <span class="text-warning" id="totalHarga">Rp 0</span></h5>
                     <button type="submit" class="btn btn-primary mt-2">Checkout</button>
                 </div>
             </div>
+        </form>
+        <form id="form-delete-{{ $item->id ?? 0 }}" method="POST" action="{{ route('frontend.keranjang.destroy', $item->id ?? 0) }}" style="display: none;">
+            @csrf
+            @method('DELETE')
         </form>
     </div>
 </div>
 <!-- Cart Page End -->
 
+<!-- Script -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const checkAll = document.getElementById('checkAll');
@@ -88,32 +94,71 @@
 
         function updateTotal() {
             let total = 0;
-            itemCheckboxes.forEach((cb, index) => {
+            document.querySelectorAll('.item-checkbox').forEach(cb => {
+                const parent = cb.closest('.d-flex');
+                const qtyInput = parent.querySelector('input[type="number"]');
+                const price = parseInt(cb.dataset.price);
+                const qty = parseInt(qtyInput.value);
+
+                const itemTotal = parent.querySelector('.item-total');
+                const totalPerItem = price * qty;
+                itemTotal.textContent = `Rp ${totalPerItem.toLocaleString('id-ID')}`;
+
                 if (cb.checked) {
-                    const parent = cb.closest('.d-flex');
-                    const qtyInput = parent.querySelector('input[type="number"]');
-                    const price = parseInt(cb.dataset.price);
-                    const qty = parseInt(qtyInput.value);
-                    total += price * qty;
+                    total += totalPerItem;
                 }
             });
             totalDisplay.textContent = `Rp ${total.toLocaleString('id-ID')}`;
         }
 
-        checkAll.addEventListener('change', function() {
-            itemCheckboxes.forEach(cb => cb.checked = checkAll.checked);
-            updateTotal();
-        });
-
-        itemCheckboxes.forEach(cb => {
-            cb.addEventListener('change', updateTotal);
-        });
-
+        // AJAX update quantity
         document.querySelectorAll('input[type="number"]').forEach(input => {
-            input.addEventListener('change', updateTotal);
+            input.addEventListener('change', function() {
+                const parent = this.closest('.d-flex');
+                const itemId = parent.querySelector('.btn-delete-item').dataset.id;
+                const newQty = this.value;
+
+                fetch("{{ route('frontend.keranjang.updateQuantity') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            id: itemId,
+                            quantity: newQty
+                        })
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Gagal update quantity');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            updateTotal(); // Update tampilan total juga
+                        }
+                    })
+                    .catch(error => {
+                        alert('Terjadi kesalahan saat menyimpan quantity.');
+                        console.error(error);
+                    });
+            });
         });
 
-        updateTotal(); // initialize
+        updateTotal();
+    });
+
+    // Tombol hapus item
+    document.addEventListener("DOMContentLoaded", function() {
+        const deleteButtons = document.querySelectorAll('.btn-delete-item');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.dataset.id;
+                if (confirm('Yakin ingin menghapus item ini dari keranjang?')) {
+                    document.getElementById(`form-delete-${id}`).submit();
+                }
+            });
+        });
     });
 </script>
 

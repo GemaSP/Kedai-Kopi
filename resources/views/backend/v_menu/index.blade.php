@@ -66,8 +66,7 @@
                             <td>{{ $row->id_menu }}</td>
                             <td>{{ $row->nama_menu }}</td>
                             <td>
-
-                                <form action="{{ route('backend.menu.destroy', $row->id_menu) }}" method="post">
+                                <form id="delete-form-{{ $row->id_menu }}" action="{{ route('backend.menu.destroy', $row->id_menu) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-primary editBtn"
@@ -78,7 +77,7 @@
                                         data-target="#editModal">
                                         Edit
                                     </button>
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button type="button" class="btn btn-danger deleteBtn" data-nama="{{ $row->nama_menu }}">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -133,6 +132,35 @@
 
                 editNamaInput.value = nama;
                 editForm.setAttribute('action', url);
+            });
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.deleteBtn');
+
+        deleteButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const form = btn.closest('form');
+                const nama = btn.getAttribute('data-nama') || 'menu ini';
+
+                Swal.fire({
+                    title: 'Yakin?',
+                    html: 'Anda akan menghapus <b>' + nama + '</b>!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
     });

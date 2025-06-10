@@ -58,7 +58,7 @@
                                 @else
                                 <span class="text-muted"></span>
                                 @endif
-                                <a href="{{ route('backend.pemesanan.show', $trx->id_pemesanan) }}" class="btn btn-info btn-sm">Detail</a>
+                                <a href="{{ route('backend.transaksi.show', $trx->id_transaksi) }}" class="btn btn-info btn-sm">Detail</a>
                             </td>
                         </tr>
                         @endforeach
