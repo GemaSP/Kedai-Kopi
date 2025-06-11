@@ -34,6 +34,13 @@ class LaporanController extends Controller
             ->select('pemesanan.*') // hanya ambil kolom dari pemesanan
             ->get();
 
+        if ($pemesanan->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Tidak ada data transaksi pada rentang tanggal tersebut.'
+            ]);
+        }
+
         // Total transaksi & pendapatan
         $totalTransaksi = $pemesanan->count();
         $totalPendapatan = $pemesanan->sum('total_harga');
@@ -126,7 +133,6 @@ class LaporanController extends Controller
         $filename = "Laporan Penjualan dari {$tanggalAwalFormatted} sd {$tanggalAkhirFormatted}.pdf";
 
         return $pdf->download($filename);
-
 
         // atau jika mau langsung download:
         // return $pdf->download('laporan_penjualan.pdf');

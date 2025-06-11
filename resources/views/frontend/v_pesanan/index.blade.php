@@ -25,7 +25,7 @@
                             class="img-fluid rounded mr-3"
                             style="width: 60px; height: 60px; object-fit: cover;">
                         <div>
-                            <h6 class="mb-1">{{ $item->produk->nama }}</h6>
+                            <h6 class="mb-1 text-white">{{ $item->produk->nama }}</h6>
                             <small>Qty: {{ $item->quantity }} | Harga: Rp {{ number_format($item->harga_satuan, 0, ',', '.') }}</small>
                         </div>
                     </div>

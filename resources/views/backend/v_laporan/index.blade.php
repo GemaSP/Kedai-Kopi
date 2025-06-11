@@ -13,16 +13,16 @@
             <i class="fas fa-file-alt"></i> Cetak Laporan Penjualan
         </div>
         <div class="card-body">
-            <form action="{{ route('backend.laporan.cetak') }}" method="POST" target="_blank">
+            <form id="formLaporan">
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-md-5">
                         <label for="tanggal_awal">Dari Tanggal</label>
-                        <input type="date" name="tanggal_awal" id="tanggal_awal" class="form-control" required>
+                        <input type="date" name="tanggal_awal" id="tanggal_awal" class="form-control" required oninvalid="this.setCustomValidity('Tanggal awal tidak boleh kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group col-md-5">
                         <label for="tanggal_akhir">Sampai Tanggal</label>
-                        <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="form-control" required>
+                        <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="form-control" required oninvalid="this.setCustomValidity('Tanggal akhir tidak boleh kosong')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group col-md-2 align-self-end">
                         <button type="submit" class="btn btn-success btn-block">
@@ -35,5 +35,43 @@
     </div>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('formLaporan').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const form = this;
+        const formData = new FormData(form);
+
+        fetch("{{ route('backend.laporan.cetak') }}", {
+                method: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'error') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Data Tidak Ditemukan',
+                        text: data.message
+                    });
+                } else if (data.status === 'success') {
+                    // window.open(data.url, '_blank'); // buka PDF jika ada
+                }
+            })
+            // .catch(error => {
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Gagal',
+            //         text: 'Terjadi kesalahan saat mencetak laporan.'
+            //     });
+            //     console.error(error);
+            // });
+    });
+</script>
+
 <!-- /.container-fluid -->
 @endsection
